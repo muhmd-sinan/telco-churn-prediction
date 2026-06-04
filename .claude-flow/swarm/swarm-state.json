@@ -1,0 +1,31 @@
+{
+  "swarms": {
+    "swarm-1780591753696-foi4n6": {
+      "swarmId": "swarm-1780591753696-foi4n6",
+      "topology": "hierarchical-mesh",
+      "maxAgents": 6,
+      "status": "running",
+      "agents": [
+        "ml-lead",
+        "eda-specialist",
+        "feature-specialist",
+        "model-specialist",
+        "deployment-specialist",
+        "business-specialist"
+      ],
+      "tasks": [],
+      "config": {
+        "topology": "hierarchical-mesh",
+        "maxAgents": 6,
+        "strategy": "specialized",
+        "communicationProtocol": "message-bus",
+        "autoScaling": true,
+        "consensusMechanism": "majority"
+      },
+      "createdAt": "2026-06-04T16:49:13.696Z",
+      "updatedAt": "2026-06-04T16:49:13.696Z",
+      "pid": 23588
+    }
+  },
+  "version": "3.0.0"
+}

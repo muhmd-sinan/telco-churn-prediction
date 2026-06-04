@@ -1,0 +1,23 @@
+{
+  "tasks": {
+    "task-1780592109085-89vldq": {
+      "taskId": "task-1780592109085-89vldq",
+      "type": "feature",
+      "description": "Netflix Churn Prediction Project - Complete end-to-end ML pipeline for streaming platform customer retention",
+      "priority": "high",
+      "status": "pending",
+      "progress": 0,
+      "assignedTo": [],
+      "tags": [
+        "ml",
+        "churn-prediction",
+        "xgboost",
+        "deployment"
+      ],
+      "createdAt": "2026-06-04T16:55:09.085Z",
+      "startedAt": null,
+      "completedAt": null
+    }
+  },
+  "version": "3.0.0"
+}
