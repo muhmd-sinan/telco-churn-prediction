@@ -1,9 +1,9 @@
-# NETFLIX CHURN PREDICTION - PROJECT ROADMAP
+# TELECOM CUSTOMER CHURN PREDICTION - PROJECT ROADMAP
 
-**Project**: Customer Churn Prediction for Netflix-Style Streaming Platform  
-**Objective**: Build production-grade ML system to predict customer churn 30 days in advance  
+**Project**: Customer Churn Prediction — IBM Telco Dataset  
+**Objective**: Build production-grade ML system to predict customer churn  
 **Timeline**: 10 days  
-**Dataset**: 50,000 users, 20 features  
+**Dataset**: 7,043 customers, 21 features (Telco-Customer-Churn.csv)  
 **Success Criteria**: Recall >80%, ROC-AUC >85%, 20% churn reduction  
 **Recommended Model**: XGBoost  
 **Expected ROI**: $100K net gain (3.3x investment)
@@ -12,7 +12,7 @@
 
 ## PROJECT OVERVIEW
 
-**Business Context**: Netflix-style streaming platform experiencing customer attrition  
+**Business Context**: Telecom company experiencing customer attrition  
 **Goal**: Predict churn probability to enable proactive retention interventions  
 **Impact**: Reduce monthly churn by 20%, save $180K annually  
 **Approach**: End-to-end ML pipeline from data ingestion to production deployment  
@@ -31,7 +31,7 @@
 ✅ Project folder structure created
 ✅ Virtual environment configured
 ✅ Dependencies installed (pandas, numpy, scikit-learn, xgboost, lightgbm, catboost, shap)
-✅ Dataset loaded: netflix_user_behavior_dataset.csv
+✅ Dataset loaded: Telco-Customer-Churn.csv
 ✅ Initial data quality report generated
 ✅ Project metadata stored in AgentDB memory system
 ```
@@ -59,7 +59,7 @@ netflix_churn_prediction/
 │
 ├── data/
 │   ├── raw/
-│   │   └── netflix_user_behavior_dataset.csv
+│   │   └── Telco-Customer-Churn.csv
 │   ├── processed/
 │   │   ├── train_features.csv
 │   │   └── test_features.csv
