@@ -17,7 +17,8 @@ st.set_page_config(
     page_title="Churn Intelligence",
     page_icon="📊",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
+    menu_items={}
 )
 
 # ─────────────────────────────────────────────
@@ -70,6 +71,10 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {{
 [data-testid="stSidebar"] hr {{ border-color: {BORDER} !important; }}
 
 header[data-testid="stHeader"] {{ background: transparent !important; }}
+[data-testid="stDeployButton"],
+[data-testid="stBaseButton-header"],
+.stDeployButton,
+#MainMenu {{ display: none !important; }}
 .block-container {{ padding-top: 1.5rem !important; max-width: 1400px; }}
 
 ::-webkit-scrollbar {{ width: 6px; height: 6px; }}

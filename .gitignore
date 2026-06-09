@@ -1,9 +1,33 @@
-venv/
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
+*.pyd
+.Python
+
+# Environments
+venv/
+.venv/
+env/
 .env
-*.joblib
-data/raw/
-reports/*.html
+*.env
+
+# Jupyter
 .ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Generated reports
+reports/*.html
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Claude Code
+.claude/

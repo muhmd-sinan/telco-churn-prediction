@@ -1,25 +1,30 @@
 # Telco Customer Churn Prediction
 
-A machine learning system that predicts customer churn for a telecom provider, with an interactive analytics dashboard built in Streamlit.
+Machine learning system that predicts customer churn for a telecom provider, with an interactive analytics dashboard built in Streamlit.
 
-## What It Does
+## Quick Start
 
-- Trains three ML models (Logistic Regression, Random Forest, XGBoost) on 7,043 customer records
-- Evaluates each model on a held-out test set with full metrics: AUC-ROC, precision, recall, F1, confusion matrix
-- Provides a four-page interactive dashboard for exploration, model comparison, and per-model deep-dive
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
 
-## Dashboard Pages
+Run from the project root so relative paths to `data/` and `models/` resolve correctly.
 
-| Page | What you get |
-|------|-------------|
-| **Overview** | KPI cards, churn donut chart, contract/tenure/payment method breakdowns |
-| **CSV Explorer** | Upload any CSV — or use the built-in dataset — for distributions, correlation heatmap, and scatter plots |
-| **Model Performance** | Side-by-side ROC curves, Precision-Recall curves, prediction score distributions, full comparison table |
-| **Model Deep-Dive** | Per-model confusion matrix, classification report with inline progress bars, threshold analysis, feature importance/coefficients, risk bucket breakdown |
+## Dashboard
+
+Four pages, dark navy theme, fully interactive Plotly charts:
+
+| Page | Contents |
+|------|----------|
+| **Overview** | KPI cards, churn donut, contract / tenure / payment breakdowns, insight summary |
+| **CSV Explorer** | Upload any CSV or use the built-in dataset — distributions, correlation heatmap, scatter explorer |
+| **Model Performance** | ROC curves, Precision-Recall curves, score distributions, full metric comparison table |
+| **Model Deep-Dive** | Confusion matrix, classification report, threshold analysis, feature importance, risk buckets |
 
 ## Model Results
 
-All models were evaluated on a 20% held-out test set (1,409 customers).
+Evaluated on a 20% held-out test set (1,409 customers).
 
 ### Best Model — Logistic Regression
 
@@ -34,17 +39,15 @@ All models were evaluated on a 20% held-out test set (1,409 customers).
 
 Confusion matrix: TN=934 · FP=101 · FN=168 · TP=206
 
-Logistic Regression outperforms the tree-based models on AUC-ROC, accuracy, and all churn-class metrics despite being the simplest model — a common result on tabular datasets with strong linear separability.
-
 ### Full Comparison
 
 | Model | AUC-ROC | Accuracy | Precision | Recall | F1 | Avg Precision |
 |-------|---------|----------|-----------|--------|----|---------------|
-| **Logistic Regression** ⭐ | **0.8415** | **80.91%** | **67.1%** | **55.1%** | **60.5%** | **62.99%** |
+| **Logistic Regression** ⭐ | **0.8415** | **80.91%** | **67.1%** | **55.1%** | **60.5%** | 62.99% |
 | Random Forest | 0.8216 | 77.50% | 59.5% | 47.9% | 53.0% | 61.45% |
 | XGBoost | 0.8203 | 77.50% | 58.9% | 50.5% | 54.4% | 60.91% |
 
-> **Metrics are for the Churn (positive) class** — the harder and more business-relevant class to predict correctly.
+> Metrics are for the Churn (positive) class. Logistic Regression wins on all metrics — common on tabular data with strong linear separability.
 
 ### Confusion Matrices
 
@@ -54,50 +57,40 @@ Logistic Regression outperforms the tree-based models on AUC-ROC, accuracy, and 
 | Random Forest | 913 | 122 | 195 | 179 |
 | XGBoost | 903 | 132 | 185 | 189 |
 
+## Key Findings
+
+- Month-to-month customers churn at ~43% vs 3% for two-year contracts
+- Fiber optic internet has the highest churn rate across all service types
+- Customers in their first 12 months are 3× more likely to churn than long-tenure customers
+- Electronic check payers churn significantly more than any other payment method
+
 ## Project Structure
 
 ```
 .
-├── app.py                    # Streamlit dashboard (entry point)
+├── app.py                        # Streamlit dashboard
 ├── data/
-│   ├── raw/
-│   │   └── Telco-Customer-Churn.csv
-│   └── processed/
-│       ├── X_train.csv
-│       ├── X_test.csv
-│       ├── y_train.csv
-│       └── y_test.csv
-├── models/
+│   ├── raw/                      # Telco-Customer-Churn.csv (not committed)
+│   └── processed/                # X_train, X_test, y_train, y_test
+├── models/                       # Trained model artifacts
 │   ├── scaler.joblib
 │   ├── logistic_regression.joblib
-│   ├── random_forest.joblib
-│   └── xgboost.joblib
+│   ├── xgboost.joblib
+│   └── best_model.joblib
 ├── notebooks/
-│   ├── 01_eda.ipynb
-│   ├── 02_preprocessing.ipynb
-│   └── 03_modeling.ipynb
+│   └── 01_eda.ipynb
 ├── src/
-│   ├── data/
+│   ├── data/                     # validate.py, preprocess.py
 │   ├── features/
 │   ├── models/
 │   └── visualization/
-├── api/
+├── reports/                      # model_comparison.csv, roc_curve.png
+├── api/                          # FastAPI scaffold
 ├── tests/
 ├── requirements.txt
 └── ROADMAP.md
 ```
 
-## Quick Start
-
-```bash
-# Install dependencies
-pip install -r requirements.txt
-
-# Run the dashboard
-streamlit run app.py
-```
-
-The app expects to be run from the project root so that the relative paths to `data/` and `models/` resolve correctly.
 
 ## Tech Stack
 
@@ -110,13 +103,5 @@ The app expects to be run from the project root so that the relative paths to `d
 
 ## Dataset
 
-**Telco-Customer-Churn.csv** — 7,043 customers, 21 features including tenure, contract type, internet service, payment method, monthly/total charges, and the binary churn label (`Yes`/`No`).
-
+**Telco-Customer-Churn.csv** — 7,043 customers, 21 features: tenure, contract type, internet service, payment method, monthly/total charges, and binary churn label.  
 Class imbalance: ~26.5% churn.
-
-## Key Findings
-
-- Month-to-month customers churn at ~43 % vs 3 % for two-year contracts
-- Fiber optic internet service has the highest churn rate among all service types
-- Customers in their first 12 months are 3× more likely to churn than long-tenure customers
-- Electronic check payers churn significantly more than customers using other payment methods
