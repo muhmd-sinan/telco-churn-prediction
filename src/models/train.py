@@ -1,4 +1,5 @@
 import pandas as pd
+import joblib
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
@@ -132,4 +133,19 @@ results_df.to_csv('reports/model_comparison.csv', index=False)
 
 print()
 print('Results saved to reports/model_comparison.csv')
+
+
+# --------------------------------------------------
+# Step 9: Save all models and the scaler to disk
+# --------------------------------------------------
+
+joblib.dump(scaler, 'models/scaler.joblib')
+joblib.dump(logistic_model, 'models/logistic_regression.joblib')
+joblib.dump(random_forest_model, 'models/random_forest.joblib')
+joblib.dump(xgboost_model, 'models/xgboost.joblib')
+
+print('Scaler saved to models/scaler.joblib')
+print('Logistic Regression saved to models/logistic_regression.joblib')
+print('Random Forest saved to models/random_forest.joblib')
+print('XGBoost saved to models/xgboost.joblib')
 print('Done.')
